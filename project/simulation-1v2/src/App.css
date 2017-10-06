@@ -1,0 +1,38 @@
+.header {
+   height: 100px;
+   background-color: #AB2A19;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.headerTitle {
+   font-family: 'Open Sans';
+   font-weight: bold;
+   color: white;
+   font-size: 30px;
+}
+
+.logo {
+   position: relative;
+   top: 13px;
+   margin-right: 10px;
+   width: 50px;
+
+}
+
+.green {
+   background-color: green;
+}
+
+.shelf {
+   background-color: #D34735;
+   display: flex;
+   justify-content: center;
+
+   height: 40px;
+   width: 400px;
+   color: white;
+   font-size: 25px;
+   font-family: 'Open Sans';
+}
