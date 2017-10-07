@@ -18,7 +18,7 @@ class App extends Component {
             <Switch>
                <Route path="/" exact component={ShelfOverview} />
                <Route path="/bin/bin" component={BinDetail} />
-               <Route path="/bins/:letter" component={BinOverview} />
+               <Route path="/bins/:shelfletter" component={BinOverview} />
             </Switch>
          </Router>
       </div>

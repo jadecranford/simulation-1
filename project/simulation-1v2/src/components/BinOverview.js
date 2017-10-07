@@ -1,39 +1,113 @@
 import React, { Component } from 'react';
 import BinButton from './BinButton.js';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-class BinOverview extends Component {
+import BinData from './BinData';
+
+export default class BinOverview extends Component {
    constructor() {
       super();
 
       this.state = {
-         bins: [
-            {number: 1, show: false},
-            {number: 2, show: false},
-            {number: 3, show: false},
-            {number: 4, show: true},
-            {number: 5, show: false},
-            {number: 6, show: true},
-            {number: 7, show: false},
-            {number: 8, show: true},
-            {number: 9, show: true}
-         ]
+         binData: []
       }
    }
 
-  render() {
-    return (
-      <div>
-         {this.state.bins.map( (bin, index) => {
-            return (
-               <Link to='/bin/bin'>
-                  <BinButton title={bin.number} show={bin.show} />
-               </Link>
-            )
-         })}
-      </div>
-    );
-  }
+   componentDidMount() {
+      const { params } = this.props.match;
+      this.getBinData(params.shelfletter);
+   }
+
+
+   getBinData = (shelfletter) => {
+      axios.get(`http://localhost:8888/bins/${shelfletter}`).then( response => {
+         console.log("11111111111111", response);
+         this.setState({
+            binData: response.data
+         })
+      })
+   }
+
+   render() {
+      return(
+         <div>
+            {this.state.binData.map((bin, index) => {
+               return (
+                  <Link to='/bin/bin'>
+                     <BinButton bin={bin} key={index} />
+                  </Link>
+               )
+            })}
+         </div>
+      )
+   }
+
 }
 
-export default BinOverview;
+// function BinOverview(props) {
+//    console.log(props)
+//    return (
+//       <div>
+//          {props.bins.map((bin, index) => {
+//             return (
+//                <Link to='/bin/bin'>
+//                   <BinButton bin={bin} key={index} />
+//                </Link>
+//             )
+//          })}
+//       </div>
+//    )
+// }
+
+
+/*
+export default class BinData extends Component {
+   constructor() {
+      super();
+
+      this.state = {
+         binData: ['1', '2']
+      }
+   }
+
+   componentDidMount() {
+      this.getBinData();
+   }
+
+   getBinData = (id) => {
+      axios.get(`http://localhost:8888/bins/${id}`).then( response => {
+         this.setState({
+            binData: response.data
+         })
+      })
+   }
+
+   render() {
+      return (
+         <div>
+         <BinOverview bins={this.state.binData} />
+         </div>
+
+      )
+   }
+}
+*/
+
+// class BinOverview extends Component {
+//
+//   render(props) {
+//     return (
+//       <div>
+//          {props.bins.map( (bin, index) => {
+//             return (
+//                <Link to='/bin/bin'>
+//                   <BinButton bin={bin} key={index} />
+//                </Link>
+//             )
+//          })}
+//       </div>
+//     );
+//   }
+// }
+//

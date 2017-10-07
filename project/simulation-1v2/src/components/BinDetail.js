@@ -3,11 +3,9 @@ import React, { Component } from 'react';
 export default class BinDetail extends Component {
 
    edit = () => {
-
    }
 
    delete = () => {
-
    }
 
    render() {
